@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロフィール - 折田悠希 yuki_orita</title>
+    <style>
+        :root {
+            --bg-color: #060913;
+            --card-bg: #0f1626;
+            --text-color: #f8fafc;
+            --text-muted: #64748b;
+            --primary-color: #1d4ed8;
+            --border-radius: 6px;
+            --transition: all 0.4s ease;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding-top: 80px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(6, 9, 19, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .header-home-btn {
+            font-size: 0.85rem;
+            color: var(--text-color);
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 7px 16px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .header-home-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        main {
+            max-width: 760px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .profile-container {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius);
+            padding: 45px;
+            display: flex;
+            gap: 45px;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 600px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 35px 20px;
+            }
+        }
+
+        .profile-img {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .info-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .info-item .label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-item p {
+            font-size: 1.1rem;
+        }
+        
+        .name-jp {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        
+        .name-en {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            font-family: monospace;
+            margin-left: 8px;
+        }
+
+        a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            text-decoration: underline;
+            color: #60a5fa;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ORITA YUKI</div>
+        <a href="index.html" class="header-home-btn">メインページに戻る</a>
+    </header>
+
+    <main>
+        <div class="profile-container">
+            <img src="20250706_153043.jpg" alt="折田悠希" class="profile-img">
+            <div class="info-list">
+                <div class="info-item">
+                    <div class="label">名前</div>
+                    <p><span class="name-jp">折田悠希</span><span class="name-en">yuki_orita</span></p>
+                </div>
+                <div class="info-item">
+                    <div class="label">生年月日</div>
+                    <p>2009年09月11日生まれ</p>
+                </div>
+                <div class="info-item">
+                    <div class="label">好きなもの</div>
+                    <p>焼きそば</p>
+                </div>
+                <div class="info-item">
+                    <div class="label">メールアドレス</div>
+                    <p><a href="mailto:yukiorita0911.official@gmail.com">yukiorita0911.official@gmail.com</a></p>
+                </div>
+                <div class="info-item">
+                    <div class="label">LINKEDIN</div>
+                    <p><a href="https://www.linkedin.com/in/%E6%82%A0%E5%B8%8C-%E6%8A%98%E7%94%B0-746b84383/" target="_blank" rel="noopener noreferrer">LinkedInはこちら</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
