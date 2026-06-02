@@ -3,25 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>最新の記事</title>
+    <title>最新の記事 - 折田悠希</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root { --bg-color: #060913; --card-bg: #0f1626; --text-color: #f8fafc; --text-muted: #64748b; --border-radius: 6px; }
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: var(--bg-color); color: var(--text-color); padding-top: 80px; }
-        header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(6, 9, 19, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255, 255, 255, 0.04); padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-        .logo { font-weight: 800; color: #ffffff; }
-        .header-home-btn { font-size: 0.85rem; color: var(--text-color); text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.12); padding: 7px 16px; border-radius: var(--border-radius); transition: all 0.3s; }
-        .header-home-btn:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(255, 255, 255, 0.3); }
-        main { max-width: 700px; margin: 80px auto; padding: 60px 20px; background: var(--card-bg); border-radius: var(--border-radius); border: 1px solid rgba(255, 255, 255, 0.02); text-align: center; box-shadow: 0 10px 40px rgba(0,0,0,0.3); min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center;}
-        h1 { font-size: 1.6rem; margin-bottom: 0px; }
+        .article-img {
+            width: 100%;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            object-fit: cover;
+            margin: -40px -40px 20px -40px;
+            width: calc(100% + 80px);
+            border-bottom: 1px solid var(--card-border);
+        }
+        @media (max-width: 768px) {
+            .article-img {
+                margin: -30px -30px 20px -30px;
+                width: calc(100% + 60px);
+            }
+        }
     </style>
 </head>
 <body>
+
+    <div class="animated-bg">
+        <div class="bg-lines" id="bgLines"></div>
+        <div class="bg-blob" id="bgBlob"></div>
+    </div>
+
     <header>
-        <div class="logo">ORITA YUKI</div>
+        <a href="index.html" class="logo">ORITA <span class="logo-highlight">YUKI</span></a>
         <a href="index.html" class="header-home-btn">メインページに戻る</a>
     </header>
+
     <main>
-        <h1>最新の記事</h1>
+        <h1 class="page-title reveal">Articles</h1>
+        <p class="page-subtitle reveal">最新の記事やブログ</p>
+
+        <div class="card-grid">
+            <!-- AUTO_INJECT_ARTICLES_START -->
+
+            <a href="article_001.html" class="glass-card reveal">
+                <div class="article-img" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6);"></div>
+                <div>
+                    <div class="card-title">OpenWebUIについてまとめた</div>
+                    <div class="card-desc">AIに少し調べさせたら思ったより面白かったので、そのまま記事にしました。AIが作成しているため間違いがあるかもしれません。その時はご報告よろしくお願いします。</div>
+                </div>
+                <div class="card-action" style="margin-top:20px;">
+                    続きを読む
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </a>
+            <a href="article_002.html" class="glass-card reveal">
+                <div class="article-img" style="background:linear-gradient(135deg,#0ea5e9,#2563eb);"></div>
+                <div>
+                    <div class="card-title">MD Viewer</div>
+                    <div class="card-desc">MACのテキストエディットが使いにくいので、AIで作ってみた。</div>
+                </div>
+                <div class="card-action" style="margin-top:20px;">
+                    続きを読む
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+            </a>
+            <!-- AUTO_INJECT_ARTICLES_END -->
+        </div>
     </main>
+
+    <script src="main.js"></script>
 </body>
 </html>

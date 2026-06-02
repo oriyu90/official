@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenWebUIについてまとめた</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-body {
+            background:rgba(15,22,38,.4);
+            border:1px solid rgba(255,255,255,.05);
+            backdrop-filter:blur(10px);
+            padding:40px;border-radius:12px;margin-top:30px;
+            color:#f8fafc;line-height:2;font-size:1.05rem;
+        }
+        .article-body p{margin-bottom:20px}
+        .article-body h1,.article-body h2,.article-body h3{margin:30px 0 10px;font-weight:700}
+        .article-body ul,.article-body ol{padding-left:1.5em;margin-bottom:20px}
+        .article-body li{margin-bottom:6px}
+        .article-body code{background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:.9em}
+        .article-body pre{background:rgba(0,0,0,.3);padding:16px;border-radius:8px;overflow-x:auto;margin-bottom:20px}
+        .article-body pre code{background:none;padding:0}
+        .article-body a{color:#60a5fa}
+        .article-body blockquote{border-left:4px solid rgba(255,255,255,.3);padding-left:16px;margin:20px 0;color:rgba(248,250,252,.7)}
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="bg-lines" id="bgLines"></div>
+        <div class="bg-blob"  id="bgBlob"></div>
+    </div>
+    <header>
+        <a href="index.html" class="logo">ORITA <span class="logo-highlight">YUKI</span></a>
+        <a href="articles.html" class="header-home-btn">記事一覧に戻る</a>
+    </header>
+    <main>
+        <h1 class="page-title reveal">OpenWebUIについてまとめた</h1>
+        <div class="article-body reveal">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenWebUI 完全ガイド 2026年5月最新版</title>
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-light: #14b8a6;
+            --primary-dark: #0d4a45;
+            --accent: #f97316;
+            --accent-light: #fb923c;
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #cbd5e1;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #1a1f3a 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(20, 184, 166, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        header h1 {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            font-size: 1.3em;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        nav a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* Main Content */
+        main {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--primary-light);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--primary-light) 100%);
+        }
+
+        section h3 {
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            color: var(--text);
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(20, 184, 166, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--primary-light));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 32px rgba(20, 184, 166, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card h4 {
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .feature-icon {
+            font-size: 1.5em;
+        }
+
+        /* Flow Diagram */
+        .flow-diagram {
+            background: var(--bg-card);
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .flow-step {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .flow-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .flow-arrow {
+            color: var(--accent);
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #0a0e27;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #a0aec0;
+            line-height: 1.5;
+        }
+
+        .code-block .keyword { color: #f97316; }
+        .code-block .string { color: #86efac; }
+        .code-block .comment { color: #64748b; }
+        .code-block .function { color: #60a5fa; }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background-color: rgba(20, 184, 166, 0.05);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin: 40px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 0;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 25px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab-button.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-button:hover {
+            color: var(--text);
+        }
+
+        .tab-content {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-light) 0%, var(--accent) 100%);
+        }
+
+        .timeline-item {
+            margin-left: 100px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -80px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+
+        .timeline-date {
+            font-size: 0.9em;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content h4 {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(249, 115, 22, 0.05) 100%);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-box strong {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            section {
+                padding: 40px 20px;
+            }
+
+            section h2 {
+                font-size: 1.8em;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            nav a {
+                padding: 12px 15px;
+                font-size: 0.9em;
+            }
+
+            .flow-diagram {
+                padding: 20px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            th, td {
+                padding: 12px;
+            }
+        }
+
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.15) 0%, rgba(20, 184, 166, 0.15) 100%);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--accent);
+        }
+
+        .highlight strong {
+            color: var(--accent-light);
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .diagram-box {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .diagram-box h4 {
+            color: var(--primary-light);
+            margin-bottom: 20px;
+        }
+
+        .diagram-svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-light);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>OpenWebUI</h1>
+        <p>自分のサーバーで動かす AI プラットフォーム 完全ガイド</p>
+        <div class="version-badge">v0.9.5 | 2026年5月最新版</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#overview">概要</a></li>
+            <li><a href="#features">主な機能</a></li>
+            <li><a href="#workflow">動作フロー</a></li>
+            <li><a href="#details">機能詳細</a></li>
+            <li><a href="#patterns">活用パターン例</a></li>
+            <li><a href="#tips">運用のポイント</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Overview Section -->
+        <section id="overview">
+            <div class="container">
+                <h2>OpenWebUI とは</h2>
+                
+                <p style="font-size: 1.1em; color: var(--text-muted); margin-bottom: 30px;">
+                    OpenWebUI は、「どの AI モデルも 1 つの画面で使える」をコンセプトにした
+                    <strong style="color: var(--accent);">オープンソース</strong>の AI プラットフォームです。
+                    自分のサーバーにインストールして使うタイプで、複数の AI モデルをまとめて管理できます。
+                </p>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">⭐</span>完全オープンソース</h4>
+                        <p>GitHub で 140,000 件超のスターを獲得。世界でもっとも使われているローカル AI 向けの操作画面です。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🔒</span>完全オンプレミス対応</h4>
+                        <p>データを一切クラウドに送らずに動作します。社内の機密情報も安心して扱えます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🚀</span>活発な開発</h4>
+                        <p>週に複数回バージョンアップされ、新機能が次々と追加されます。直近 6 ヶ月で 50 件以上のリリース実績。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🔌</span>多数の AI サービスに対応</h4>
+                        <p>Ollama・OpenAI・Anthropic・Groq など、主要な AI サービスをすべて 1 つの画面で利用できます。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">👥</span>企業向け機能を装備</h4>
+                        <p>役割ベースのアクセス制御（RBAC）・シングルサインオン（SSO）・LDAP など、大規模組織向けのセキュリティ機能を標準搭載。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">⚡</span>設定不要でデプロイ可能</h4>
+                        <p>Docker Model Runner と自動連携します。複雑な設定なしで、数分で起動できます。</p>
+                    </div>
+                </div>
+
+                <div class="highlight" style="margin-top: 40px;">
+                    <strong>対応している AI サービス:</strong> Ollama • OpenAI • Anthropic • Groq • LM Studio • vLLM • TGI • 
+                    OpenRouter • Mistral • Azure OpenAI • Cloudflare Workers AI • その他 OpenAI 互換のサービス全般
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features">
+            <div class="container">
+                <h2>主な機能一覧</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>機能</th>
+                            <th>説明</th>
+                            <th>用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>📊 複数モデル同時会話</strong></td>
+                            <td>複数の AI モデルに同じ質問を同時に送って回答を比較できます</td>
+                            <td>モデルごとの違いを確認、最適なモデルを選ぶ</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📚 RAG（検索拡張生成）</strong></td>
+                            <td>自社ドキュメントや知識データベースを参照して回答を生成します</td>
+                            <td>社内資料の検索、機密データの安全な活用</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔍 Web 検索連携</strong></td>
+                            <td>複数の Web 検索エンジンを切り替えて使えます</td>
+                            <td>最新情報の取得</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💾 ナレッジベース</strong></td>
+                            <td>ドキュメントを永続的に登録して検索対象として使い続けられます</td>
+                            <td>組織の知識を一元管理</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎨 画像生成連携</strong></td>
+                            <td>AUTOMATIC1111・ComfyUI・DALL-E に対応しています</td>
+                            <td>会話の流れで画像を自動生成</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎤 音声入出力</strong></td>
+                            <td>ブラウザの音声機能（Web Speech API）に対応しています</td>
+                            <td>ハンズフリー操作、アクセシビリティ向上</td>
+                        </tr>
+                        <tr>
+                            <td><strong>⚙️ カスタム関数（Functions）</strong></td>
+                            <td>Python でカスタム処理を書いて組み込めます</td>
+                            <td>業務システムとの連携</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔐 RBAC（役割ベースのアクセス制御）</strong></td>
+                            <td>ユーザー・グループ単位で細かく権限を管理できます</td>
+                            <td>企業レベルのセキュリティ管理</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💬 チャンネル機能</strong></td>
+                            <td>部門ごとにカスタマイズした AI 環境を作れます</td>
+                            <td>組織内での分散管理</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🔗 MCP 連携</strong></td>
+                            <td>外部ツールやシステムと接続できます</td>
+                            <td>AI エージェントとして活用</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Workflow Section -->
+        <section id="workflow" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);">
+            <div class="container">
+                <h2>動作フロー</h2>
+
+                <div class="flow-diagram">
+                    <h3 style="margin-bottom: 30px; color: var(--text);">質問を送ってから回答が返ってくるまでの流れ</h3>
+                    
+                    <svg viewBox="0 0 1200 800" style="width: 100%; height: auto; margin-bottom: 30px;">
+                        <!-- Layer 1: Browser -->
+                        <rect x="20" y="20" width="280" height="100" fill="#0f766e" stroke="#14b8a6" stroke-width="2" rx="8"/>
+                        <text x="160" y="75" text-anchor="middle" fill="white" font-size="18" font-weight="bold">🌐 ユーザーのブラウザ</text>
+
+                        <!-- Arrow -->
+                        <line x1="300" y1="70" x2="380" y2="70" stroke="#f97316" stroke-width="3" marker-end="url(#arrowhead)"/>
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#f97316"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Layer 2: Frontend -->
+                        <rect x="380" y="20" width="280" height="100" fill="#0f766e" stroke="#14b8a6" stroke-width="2" rx="8"/>
+                        <text x="520" y="75" text-anchor="middle" fill="white" font-size="18" font-weight="bold">🎨 OpenWebUI Frontend</text>
+
+                        <!-- Arrow -->
+                        <line x1="660" y1="70" x2="740" y2="70" stroke="#f97316" stroke-width="3"/>
+
+                        <!-- Layer 3: Backend -->
+                        <rect x="740" y="20" width="280" height="100" fill="#0f766e" stroke="#14b8a6" stroke-width="2" rx="8"/>
+                        <text x="880" y="75" text-anchor="middle" fill="white" font-size="18" font-weight="bold">⚙️ OpenWebUI Backend</text>
+
+                        <!-- Processing Pipeline -->
+                        <g>
+                            <!-- Step 1 -->
+                            <rect x="50" y="180" width="220" height="80" fill="rgba(249, 115, 22, 0.2)" stroke="#f97316" stroke-width="2" rx="8"/>
+                            <text x="160" y="205" text-anchor="middle" fill="#fb923c" font-size="14" font-weight="bold">1️⃣ プロンプト前処理</text>
+                            <text x="160" y="230" text-anchor="middle" fill="#cbd5e1" font-size="12">テンプレート適用</text>
+                            <text x="160" y="245" text-anchor="middle" fill="#cbd5e1" font-size="12">システムメッセージ付与</text>
+
+                            <!-- Step 2 -->
+                            <rect x="300" y="180" width="220" height="80" fill="rgba(20, 184, 166, 0.2)" stroke="#14b8a6" stroke-width="2" rx="8"/>
+                            <text x="410" y="205" text-anchor="middle" fill="#14b8a6" font-size="14" font-weight="bold">2️⃣ 機能分岐</text>
+                            <text x="410" y="230" text-anchor="middle" fill="#cbd5e1" font-size="12">RAG / Web検索</text>
+                            <text x="410" y="245" text-anchor="middle" fill="#cbd5e1" font-size="12">画像生成の実行判定</text>
+
+                            <!-- Step 3 -->
+                            <rect x="550" y="180" width="220" height="80" fill="rgba(249, 115, 22, 0.2)" stroke="#f97316" stroke-width="2" rx="8"/>
+                            <text x="660" y="205" text-anchor="middle" fill="#fb923c" font-size="14" font-weight="bold">3️⃣ モデル選択</text>
+                            <text x="660" y="230" text-anchor="middle" fill="#cbd5e1" font-size="12">複数モデル同時会話</text>
+                            <text x="660" y="245" text-anchor="middle" fill="#cbd5e1" font-size="12">または単一モデル</text>
+
+                            <!-- Step 4 -->
+                            <rect x="800" y="180" width="220" height="80" fill="rgba(20, 184, 166, 0.2)" stroke="#14b8a6" stroke-width="2" rx="8"/>
+                            <text x="910" y="205" text-anchor="middle" fill="#14b8a6" font-size="14" font-weight="bold">4️⃣ LLM 呼び出し</text>
+                            <text x="910" y="230" text-anchor="middle" fill="#cbd5e1" font-size="12">Ollama / OpenAI</text>
+                            <text x="910" y="245" text-anchor="middle" fill="#cbd5e1" font-size="12">/ Anthropic等</text>
+
+                            <!-- Step 5 -->
+                            <rect x="1050" y="180" width="110" height="80" fill="rgba(249, 115, 22, 0.2)" stroke="#f97316" stroke-width="2" rx="8"/>
+                            <text x="1105" y="215" text-anchor="middle" fill="#fb923c" font-size="14" font-weight="bold">5️⃣ レスポンス</text>
+                            <text x="1105" y="240" text-anchor="middle" fill="#cbd5e1" font-size="12">処理</text>
+
+                            <!-- Arrows between steps -->
+                            <line x1="270" y1="220" x2="300" y2="220" stroke="#f97316" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <line x1="520" y1="220" x2="550" y2="220" stroke="#f97316" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <line x1="770" y1="220" x2="800" y2="220" stroke="#f97316" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <line x1="1020" y1="220" x2="1050" y2="220" stroke="#f97316" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        </g>
+
+                        <!-- Data Storage -->
+                        <rect x="80" y="350" width="900" height="120" fill="rgba(20, 184, 166, 0.1)" stroke="#14b8a6" stroke-width="2" rx="8"/>
+                        <text x="530" y="380" text-anchor="middle" fill="#14b8a6" font-size="16" font-weight="bold">📊 データ保存層</text>
+                        <text x="530" y="410" text-anchor="middle" fill="#cbd5e1" font-size="13">SQLite / PostgreSQL: チャット履歴・ユーザー情報の管理</text>
+                        <text x="530" y="430" text-anchor="middle" fill="#cbd5e1" font-size="13">ChromaDB / pgvector: ベクトルデータベース（RAG 用）</text>
+                        <text x="530" y="450" text-anchor="middle" fill="#cbd5e1" font-size="13">ファイルシステム: ドキュメント・設定ファイル</text>
+
+                        <!-- External Services -->
+                        <rect x="120" y="550" width="800" height="100" fill="rgba(249, 115, 22, 0.1)" stroke="#f97316" stroke-width="2" rx="8"/>
+                        <text x="520" y="580" text-anchor="middle" fill="#f97316" font-size="16" font-weight="bold">🔗 外部サービス連携（オプション）</text>
+                        <text x="520" y="610" text-anchor="middle" fill="#cbd5e1" font-size="13">Web検索 (Tavily/Bing) • 画像生成 (DALL-E/ComfyUI) • MCP (外部ツール) • SSO/LDAP (エンタープライズ認証)</text>
+                    </svg>
+                </div>
+
+                <div class="info-box">
+                    <strong>💡 ポイント:</strong> 各ステップは独立して動作し、使わない機能は自動的にスキップされます。
+                    たとえば RAG を使わない場合は Web 検索のみ実行、複数モデルを設定していない場合は 1 つのモデルだけで処理されるなど、
+                    必要な処理だけが自動的に選ばれます。
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Details Section -->
+        <section id="details">
+            <div class="container">
+                <h2>機能の詳細解説</h2>
+
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-button active" onclick="switchTab(event, 'rag')">📚 RAG（検索拡張生成）</button>
+                        <button class="tab-button" onclick="switchTab(event, 'multi-model')">📊 マルチモデル会話</button>
+                        <button class="tab-button" onclick="switchTab(event, 'web-search')">🔍 Web 検索</button>
+                        <button class="tab-button" onclick="switchTab(event, 'knowledge')">💾 Knowledge</button>
+                    </div>
+
+                    <!-- RAG Tab -->
+                    <div id="rag" class="tab-content active">
+                        <h3 style="margin-top: 0;">RAG とは？</h3>
+                        <p>Retrieval-Augmented Generation（検索拡張生成）の略です。社内ドキュメントやナレッジベースから
+                        関連する情報を検索し、その内容を踏まえた上で AI が回答を生成する仕組みです。</p>
+
+                        <div class="two-col" style="margin: 40px 0;">
+                            <div>
+                                <h4 style="color: var(--accent); margin-bottom: 20px;">RAG の 3 層構造</h4>
+                                <div class="diagram-box">
+                                    <div style="background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%); 
+                                               padding: 15px; border-radius: 6px; margin-bottom: 15px; color: white; font-weight: bold;">
+                                        推論モデル<br/><span style="font-size: 0.85em; font-weight: normal;">Qwen / Llama など</span>
+                                    </div>
+                                    <div style="height: 20px; display: flex; align-items: center; justify-content: center; color: #f97316; font-size: 1.3em;">↓</div>
+                                    <div style="background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%); 
+                                               padding: 15px; border-radius: 6px; margin-bottom: 15px; color: white; font-weight: bold;">
+                                        埋め込みモデル（Embedding）<br/><span style="font-size: 0.85em; font-weight: normal;">multilingual-e5</span>
+                                    </div>
+                                    <div style="height: 20px; display: flex; align-items: center; justify-content: center; color: #f97316; font-size: 1.3em;">↓</div>
+                                    <div style="background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%); 
+                                               padding: 15px; border-radius: 6px; color: white; font-weight: bold;">
+                                        リランカー（再選別モデル）<br/><span style="font-size: 0.85em; font-weight: normal;">Qwen-Reranker</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--accent); margin-bottom: 20px;">処理フロー</h4>
+                                <div class="code-block" style="text-align: left;">
+ユーザー: 「2024年度の売上は？」
+    ↓
+<span class="comment">// テキストをベクトル化（Embedding）</span>
+<span class="string">「2024年度 売上」</span> → 数値の配列（意味を表す）
+    ↓
+<span class="comment">// ベクトル検索（意味で検索）</span>
+<span class="string">営業成績_2024.pdf</span> ← ヒット！
+<span class="string">Q3_営業戦略.docx</span> ← ヒット！
+    ↓
+<span class="comment">// リランキング（関連度の高い順に並び替え）</span>
+もっとも関連度の高い 1 件に絞り込み
+    ↓
+<span class="string">営業成績_2024.pdf</span> の内容を AI に渡す
+    ↓
+<span class="keyword">回答:</span> 「2024年度の売上は... 
+参照: 営業成績_2024.pdf」
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="highlight">
+                            <strong>設定のコツ:</strong><br/>
+                            ✓ 埋め込みモデルは「multilingual-e5-large」（日本語に強い）または「bge-m3」（多言語に強い）がおすすめ<br/>
+                            ✓ リランカーモデルも必ず設定しましょう（精度が大きく向上します）<br/>
+                            ✓ ドキュメントは事前に整理してから登録するとより精度が上がります
+                        </div>
+                    </div>
+
+                    <!-- Multi-Model Tab -->
+                    <div id="multi-model" class="tab-content">
+                        <h3 style="margin-top: 0;">複数モデルを並べて比較する</h3>
+                        <p>1 つの質問を複数の AI モデルに同時に送り、
+                        それぞれの回答を一画面で見比べられます。</p>
+
+                        <div class="diagram-box" style="margin: 30px 0;">
+                            <svg viewBox="0 0 800 300" style="width: 100%; height: auto;">
+                                <!-- Input -->
+                                <rect x="300" y="10" width="200" height="50" fill="#14b8a6" stroke="none" rx="6"/>
+                                <text x="400" y="40" text-anchor="middle" fill="white" font-size="16" font-weight="bold">
+                                    ユーザープロンプト
+                                </text>
+
+                                <!-- Split -->
+                                <line x1="400" y1="60" x2="400" y2="90" stroke="#f97316" stroke-width="2"/>
+                                <line x1="400" y1="90" x2="150" y2="120" stroke="#f97316" stroke-width="2"/>
+                                <line x1="400" y1="90" x2="400" y2="120" stroke="#f97316" stroke-width="2"/>
+                                <line x1="400" y1="90" x2="650" y2="120" stroke="#f97316" stroke-width="2"/>
+
+                                <!-- Model A -->
+                                <rect x="50" y="120" width="200" height="80" fill="rgba(20, 184, 166, 0.3)" stroke="#14b8a6" stroke-width="2" rx="6"/>
+                                <text x="150" y="145" text-anchor="middle" fill="#14b8a6" font-size="14" font-weight="bold">Model A</text>
+                                <text x="150" y="165" text-anchor="middle" fill="#cbd5e1" font-size="12">Qwen 2.5</text>
+                                <text x="150" y="185" text-anchor="middle" fill="#cbd5e1" font-size="11">（日本語強）</text>
+
+                                <!-- Model B -->
+                                <rect x="300" y="120" width="200" height="80" fill="rgba(249, 115, 22, 0.3)" stroke="#f97316" stroke-width="2" rx="6"/>
+                                <text x="400" y="145" text-anchor="middle" fill="#f97316" font-size="14" font-weight="bold">Model B</text>
+                                <text x="400" y="165" text-anchor="middle" fill="#cbd5e1" font-size="12">Claude API</text>
+                                <text x="400" y="185" text-anchor="middle" fill="#cbd5e1" font-size="11">（高品質）</text>
+
+                                <!-- Model C -->
+                                <rect x="550" y="120" width="200" height="80" fill="rgba(20, 184, 166, 0.3)" stroke="#14b8a6" stroke-width="2" rx="6"/>
+                                <text x="650" y="145" text-anchor="middle" fill="#14b8a6" font-size="14" font-weight="bold">Model C</text>
+                                <text x="650" y="165" text-anchor="middle" fill="#cbd5e1" font-size="12">DeepSeek-coder</text>
+                                <text x="650" y="185" text-anchor="middle" fill="#cbd5e1" font-size="11">（コード特化）</text>
+
+                                <!-- Responses -->
+                                <line x1="150" y1="200" x2="150" y2="220" stroke="#f97316" stroke-width="2"/>
+                                <line x1="400" y1="200" x2="400" y2="220" stroke="#f97316" stroke-width="2"/>
+                                <line x1="650" y1="200" x2="650" y2="220" stroke="#f97316" stroke-width="2"/>
+
+                                <!-- Result -->
+                                <rect x="200" y="220" width="400" height="60" fill="rgba(20, 184, 166, 0.2)" stroke="#14b8a6" stroke-width="2" rx="6"/>
+                                <text x="400" y="245" text-anchor="middle" fill="#14b8a6" font-size="13" font-weight="bold">
+                                    3つの回答を横並び比較
+                                </text>
+                                <text x="400" y="265" text-anchor="middle" fill="#cbd5e1" font-size="12">
+                                    各モデルの異なる視点を一画面で評価可能
+                                </text>
+                            </svg>
+                        </div>
+
+                        <h4 style="color: var(--accent);">活用例</h4>
+                        <ul style="margin-left: 20px; color: var(--text-muted);">
+                            <li><strong>コード生成:</strong> 複数のモデルが書いたコードを比較して最良のものを選ぶ</li>
+                            <li><strong>日本語文章処理:</strong> Qwen と Gemini の日本語品質を同時に比較する</li>
+                            <li><strong>意思決定サポート:</strong> 異なる得意分野を持つモデルの意見を集めて判断する</li>
+                            <li><strong>品質確認:</strong> 同じタスクに対して複数モデルが一貫した回答を出しているか検証する</li>
+                        </ul>
+                    </div>
+
+                    <!-- Web Search Tab -->
+                    <div id="web-search" class="tab-content">
+                        <h3 style="margin-top: 0;">Web 検索との連携</h3>
+                        <p>複数の Web 検索エンジンを切り替えて使え、最新情報を取得して回答に活かせます。</p>
+
+                        <h4 style="color: var(--accent); margin: 20px 0;">対応している検索サービス</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                🔍 SearXNG
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                ⚡ Tavily
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                🦁 Brave Search
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                🦆 DuckDuckGo
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                📊 Google PSE
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                🔗 Serper / Serply
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                🪟 Bing
+                            </div>
+                            <div style="background: var(--bg-card); padding: 12px; border-radius: 6px; border-left: 3px solid #f97316;">
+                                🌍 Mojeek / Jina
+                            </div>
+                        </div>
+
+                        <div class="highlight" style="margin-top: 30px;">
+                            <strong>おすすめの選び方:</strong> 社内での利用なら「SearXNG」（オープンソースで完全プライベート）、
+                            AI 向けに最適化されたものなら「Tavily」（無料枠あり）がおすすめです。
+                        </div>
+
+                        <h4 style="color: var(--accent); margin: 20px 0;">実行例</h4>
+                        <div class="code-block">
+質問: 「2026年5月の最新 AI 技術トレンドは？」
+    ↓ Web 検索 有効
+    ↓
+複数の検索サービスから並行して検索
+    ↓
+検索結果を AI へ渡す
+    ↓
+<span class="string">「2026年5月時点では OpenWebUI が 
+  14万スター超を獲得し、業界でも
+  注目を集めています...」</span>
+(参照元: Tavily 検索結果)
+                        </div>
+                    </div>
+
+                    <!-- Knowledge Tab -->
+                    <div id="knowledge" class="tab-content">
+                        <h3 style="margin-top: 0;">ナレッジベース</h3>
+                        <p>社内ドキュメントを登録・管理しておくと、チャットで質問したときに自動的に参照してくれます。</p>
+
+                        <h4 style="color: var(--accent); margin: 20px 0;">設定の流れ</h4>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-date">ステップ 1</div>
+                                <div class="timeline-content">
+                                    <h4>ドキュメントを登録する</h4>
+                                    <p>管理者設定 → ナレッジベース → ドキュメントをまとめてアップロード</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">ステップ 2</div>
+                                <div class="timeline-content">
+                                    <h4>モデルを選ぶ</h4>
+                                    <p>埋め込みモデル（multilingual-e5）とリランカーを設定する</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">ステップ 3</div>
+                                <div class="timeline-content">
+                                    <h4>自動でインデックスが作られる</h4>
+                                    <p>ドキュメントがベクトルデータベースに自動で登録される</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-date">ステップ 4</div>
+                                <div class="timeline-content">
+                                    <h4>使い始める</h4>
+                                    <p>チャットで質問すると、ナレッジベースから自動で検索・参照される</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 style="color: var(--accent); margin: 30px 0;">登録例</h4>
+                        <div class="code-block">
+Knowledge へ登録:
+├─ company_info.txt （会社方針）
+├─ product_manual.pdf （製品マニュアル）
+├─ sales_data_2024.xlsx （営業データ）
+└─ faq.md （FAQ）
+
+↓ チャットで質問
+User: 「この製品の取り扱い方法は？」
+    ↓ Knowledge 自動検索
+    ↓ product_manual.pdf から該当情報抽出
+Assistant: 「その質問については、product_manual.pdf 
+             に記載があります。
+             ~ 記載内容を引用 ~」
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Patterns -->
+        <section id="patterns" style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);">
+            <div class="container">
+                <h2>活用パターン例</h2>
+
+                <div style="margin: 40px 0;">
+                    <h3 style="color: var(--accent); margin-bottom: 20px;">パターン 1: 社内の機密情報を安全に AI で活用する</h3>
+                    <div class="feature-card" style="border-left: 4px solid var(--accent);">
+                        <h4 style="margin-bottom: 15px;">🔐 データをクラウドに一切送らない構成</h4>
+                        <div class="code-block" style="margin: 15px 0;">
+【構成】
+├─ Ollama（ローカル推論）
+│  └─ Qwen 2.5 / Llama 2
+├─ OpenWebUI（フロントエンド）
+├─ ChromaDB（ベクトルDB）
+└─ Knowledge
+   ├─ 契約書.pdf
+   ├─ 経営方針.txt
+   └─ 過去案件.xlsx
+
+【フロー】
+1. 社員: 「この契約条件は過去例と比べて？」
+2. Knowledge から関連契約を検索（ベクトル化）
+3. リランキングで最適な参照資料を抽出
+4. Ollama のローカルモデルで分析
+5. 「過去の case X と比べて、3項目が異なります」
+   ※ すべてオンプレミスで完結！
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 40px 0;">
+                    <h3 style="color: var(--accent); margin-bottom: 20px;">パターン 2: 複数モデルをタスク別に使い分ける</h3>
+                    <div class="feature-card" style="border-left: 4px solid var(--accent);">
+                        <h4 style="margin-bottom: 15px;">⚡ 目的に合ったモデルを選んで使う</h4>
+                        <div class="code-block" style="margin: 15px 0;">
+【モデルの使い分け】
+├─ コード生成 → DeepSeek-coder
+├─ 日本語テキスト → Qwen 2.5
+├─ 高品質回答 → Claude API
+└─ リアルタイム情報 → Web 検索連携
+
+【利用例】
+「Python で Kubernetes デプロイスクリプト作成」
+  ↓
+DeepSeek-coder へ送信
+  ↓
+「このスクリプトの最新ベストプラクティスは？」
+  ↓
+Web検索 + Claude で最新情報統合
+  ↓
+🎯 最高品質な回答が得られる
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 40px 0;">
+                    <h3 style="color: var(--accent); margin-bottom: 20px;">パターン 3: 全社員が使える AI 知識共有システムを作る</h3>
+                    <div class="feature-card" style="border-left: 4px solid var(--accent);">
+                        <h4 style="margin-bottom: 15px;">👥 部門ごとにカスタマイズした AI 環境</h4>
+                        <div class="code-block" style="margin: 15px 0;">
+【構成】
+マーケティング部門
+├─ モデル: GPT-4（高品質）+ Web検索
+├─ Knowledge: 競合分析・トレンド資料
+└─ チャネル: #marketing_ai
+
+技術部門
+├─ モデル: DeepSeek-coder（コード特化）
+├─ Knowledge: 技術仕様・コードレビュー
+├─ Functions: 社内 API 連携 OK
+└─ チャネル: #tech_ai
+
+営業部門
+├─ モデル: Qwen 2.5（軽量・日本語強）
+├─ Knowledge: 顧客情報・提案テンプレート
+└─ チャネル: #sales_ai
+
+【管理】
+✓ PostgreSQL で複数ユーザー対応
+✓ RBAC で部門間のアクセス制限
+✓ チャネルごとの使用ログ監査
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operations Tips -->
+        <section id="tips">
+            <div class="container">
+                <h2>本番運用のポイント</h2>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">💾</span>データベースの選び方</h4>
+                        <p><strong>開発・検証時:</strong> SQLite（初期設定のまま使える）<br/>
+                        <strong>本番利用時:</strong> PostgreSQL への移行を推奨<br/>
+                        複数人が同時に利用する環境では必須です</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">⚡</span>ベクトル検索の高速化</h4>
+                        <p>ChromaDB のデータフォルダを SSD に置くと速くなります。<br/>
+                        PostgreSQL を使う場合は pgvector 拡張機能を活用しましょう。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">📦</span>メモリ管理</h4>
+                        <p>チャット履歴が増えすぎると表示が遅くなります。<br/>
+                        500 件を目安にアーカイブすることをおすすめします。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">⏱️</span>リバースプロキシの設定</h4>
+                        <p>長時間かかる回答の途切れを防ぐための設定です。<br/>
+                        Nginx の場合: <code>proxy_read_timeout 300s</code></p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🔧</span>本番モードで起動する</h4>
+                        <p><code>ENABLE_FRONTEND_HMR=false</code> で設定します。<br/>
+                        ブラウザの開発者拡張機能を無効化した状態で動かしましょう。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4><span class="feature-icon">🛡️</span>セキュリティ強化</h4>
+                        <p>SSRF（サーバー経由の不正リクエスト）対策が実装済みです。<br/>
+                        内部ネットワークへの不正アクセスを防げます。</p>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 50px; color: var(--accent);">PostgreSQL への移行方法</h3>
+                <div class="code-block">
+# 環境変数に設定して起動します
+DATABASE_URL=postgresql://user:pass@host:5432/openwebui
+
+# 初回起動時にテーブルが自動で作成されます
+docker run ... -e DATABASE_URL=postgresql://... open-webui/open-webui
+                </div>
+
+                <h3 style="color: var(--accent);">アップデートの方針</h3>
+                <div class="info-box">
+                    <strong>開発ペース:</strong> OpenWebUI はほぼ毎週、複数回アップデートされます。
+                    定期的に更新してセキュリティパッチや新機能を取り込みましょう。
+                    <br/><br/>
+                    <strong>更新方法:</strong> Docker を使っていれば、コマンド 1 つで最新版に更新できます。
+                    面倒な設定変更は不要です。
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Updates -->
+        <section style="background: linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);">
+            <div class="container">
+                <h2>最近のアップデート履歴</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026年5月</div>
+                        <div class="timeline-content">
+                            <h4>v0.9.5 リリース</h4>
+                            <p>不正リクエスト対策（SSRF 防御）の強化、Markdown 表示をチャットごとに制御できる機能を追加</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026年4月</div>
+                        <div class="timeline-content">
+                            <h4>Docker Model Runner との統合</h4>
+                            <p>設定なしで数分で起動できるようになりました</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026年3月</div>
+                        <div class="timeline-content">
+                            <h4>MCP サーバー対応の本格化</h4>
+                            <p>外部ツールと連携して AI エージェントとして使えるように</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2026年2月</div>
+                        <div class="timeline-content">
+                            <h4>PostgreSQL での pgvector（ベクトル検索）対応</h4>
+                            <p>RAG の検索速度が大幅に向上しました</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2025年12月</div>
+                        <div class="timeline-content">
+                            <h4>ナレッジベース機能を大幅刷新</h4>
+                            <p>操作画面が一新され、より直感的に使えるようになりました</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight" style="margin-top: 40px;">
+                    <strong>注目:</strong> OpenWebUI は開発がとても活発で、
+                    すべての新機能や改善点を追いかけるのは大変です。
+                    <a href="https://github.com/open-webui/open-webui/releases" 
+                       style="color: var(--accent-light); text-decoration: none; font-weight: 600;">
+                        公式リリースページ
+                    </a>
+                    を定期的にチェックしましょう。
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section>
+            <div class="container">
+                <h2>まとめ</h2>
+
+                <div class="two-col">
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">✅ 向いているケース</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                社内の機密データを扱う組織
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                複数の AI モデルを比較・使い分けたい
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                ローカルモデルとクラウド API を組み合わせたい
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                RAG で自社ドキュメントを AI に参照させたい
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✓</span>
+                                企業レベルのセキュリティが必要
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: var(--accent); margin-bottom: 15px;">❌ 向いていないケース</h3>
+                        <ul style="list-style: none;">
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✗</span>
+                                とにかく手軽に使いたい（ChatGPT で十分）
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✗</span>
+                                専門的なデータ分析（専用ツールを推奨）
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✗</span>
+                                本格的な画像生成（Stable Diffusion WebUI を推奨）
+                            </li>
+                            <li style="margin: 12px 0; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✗</span>
+                                コードを一切書きたくない（UI がエンジニア向け）
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight" style="margin-top: 40px; text-align: center;">
+                    <h3 style="color: var(--accent); margin-bottom: 15px;">🚀 次のステップ</h3>
+                    <p style="font-size: 1.1em;">
+                        まずは Docker でローカルに立ち上げて、RAG に自分のドキュメントを読み込ませてみてください。<br/>
+                        想像以上にいろんなことができると感じるはずです！
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OpenWebUI Complete Guide. 
+        Based on latest information as of May 2026.</p>
+        <p style="margin-top: 15px; font-size: 0.9em;">
+            Official: <a href="https://github.com/open-webui/open-webui" style="color: var(--accent-light); text-decoration: none;">
+                GitHub - open-webui/open-webui
+            </a>
+        </p>
+    </footer>
+
+    <script>
+        function switchTab(event, tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show the current tab and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease-out';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
+
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>

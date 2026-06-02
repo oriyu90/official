@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-body {
+            background:rgba(15,22,38,.4);
+            border:1px solid rgba(255,255,255,.05);
+            backdrop-filter:blur(10px);
+            padding:40px;border-radius:12px;margin-top:30px;
+            color:#f8fafc;line-height:2;font-size:1.05rem;
+        }
+        .article-body p{margin-bottom:20px}
+        .article-body h1,.article-body h2,.article-body h3{margin:30px 0 10px;font-weight:700}
+        .article-body ul,.article-body ol{padding-left:1.5em;margin-bottom:20px}
+        .article-body li{margin-bottom:6px}
+        .article-body code{background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:.9em}
+        .article-body pre{background:rgba(0,0,0,.3);padding:16px;border-radius:8px;overflow-x:auto;margin-bottom:20px}
+        .article-body pre code{background:none;padding:0}
+        .article-body a{color:#60a5fa}
+        .article-body blockquote{border-left:4px solid rgba(255,255,255,.3);padding-left:16px;margin:20px 0;color:rgba(248,250,252,.7)}
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="bg-lines" id="bgLines"></div>
+        <div class="bg-blob"  id="bgBlob"></div>
+    </div>
+    <header>
+        <a href="index.html" class="logo">ORITA <span class="logo-highlight">YUKI</span></a>
+        <a href="articles.html" class="header-home-btn">記事一覧に戻る</a>
+    </header>
+    <main>
+        <h1 class="page-title reveal">MD Viewer</h1>
+        <div class="article-body reveal">
+<p>今回私はMacで使えるエディタアプリをリリースしたんで、それについて書いてみようと思います。</p>
+<p>私は普段Macを使っているので、標準搭載されているテキストエディットを文章の原案だったり、下書きだったりを作るときにちょこちょこ使っています。<br />
+ですが、webサイトからコピーした文章の形式がcmd + vだとそのまま貼り付けられてしまうので、見にくくなったりフォントが変わったりするところに不満が出てきました。（これに関してはプレーンテキストで貼り付けを覚えてないだけでもありますね。）さらに、Windowサイズを覚えてくれないところにも不満です。<br />
+ということで、AIでサクッと代替アプリを作って見ました。それがMDViewer Proです。<br />
+私はtxt自体にこだわりがなく、txtのように扱えるならいいってだけだったので軽量なのに文字の大きさを変えれたり、AIの出力の標準フォーマット的になっている、</p>
+<h3>「MarkDown」</h3>
+<p>を採用しています。<br />
+そしてこのアプリ、私が普段使いする前提なのでとにかくユーザーフレンドリーに作っていってます。不満があれば即AIに修正依頼って感じですね。<br />
+GitHubで公開してるんでぜひ使って見てください。あと、バグとかもっとこうしてほしいを伝えられるDiscordのサーバーも作ったんでLinkdinからどうぞ。<br />
+GITHUBのリンクです。<br />
+https://github.com/oriyu90/MD-Viewer-Pro/releases</p>
+<p>というか、めっちゃ話逸れるんですけど、今この記事を書いてる横、窓の外で台風が轟音立ててます。風なのにすげえ。というか怖くて手が震えています。<br />
+物が飛んでこないことを祈って、そろそろ寝ようと思います。</p>
+<p>それではまたー。</p>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
