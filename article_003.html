@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自分でカスタムしたいから単語アプリを作った - 折田悠希 | ORITA YUKI</title>
+    <meta name="description" content="この度はTango proっていうアプリを作りました。そういうことで、経緯とか適当にまとめようとおもます。">
+    <meta name="keywords" content="折田悠希, yuki orita, ORITA YUKI, MDViewer Pro, Tango pro">
+    <meta name="author" content="折田悠希">
+    <meta property="og:title" content="自分でカスタムしたいから単語アプリを作った - 折田悠希">
+    <meta property="og:description" content="この度はTango proっていうアプリを作りました。そういうことで、経緯とか適当にまとめようとおもます。">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ja_JP">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .article-body {
+            background:rgba(15,22,38,.4);
+            border:1px solid rgba(255,255,255,.05);
+            backdrop-filter:blur(10px);
+            padding:40px;border-radius:12px;margin-top:30px;
+            color:#f8fafc;line-height:2;font-size:1.05rem;
+        }
+        .article-body p{margin-bottom:20px}
+        .article-body h1,.article-body h2,.article-body h3{margin:30px 0 10px;font-weight:700}
+        .article-body ul,.article-body ol{padding-left:1.5em;margin-bottom:20px}
+        .article-body li{margin-bottom:6px}
+        .article-body code{background:rgba(255,255,255,.1);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:.9em}
+        .article-body pre{background:rgba(0,0,0,.3);padding:16px;border-radius:8px;overflow-x:auto;margin-bottom:20px}
+        .article-body pre code{background:none;padding:0}
+        .article-body a{color:#60a5fa}
+        .article-body blockquote{border-left:4px solid rgba(255,255,255,.3);padding-left:16px;margin:20px 0;color:rgba(248,250,252,.7)}
+        .article-date{color:#8e8e93;font-size:.9rem;margin-top:6px;margin-bottom:0;}
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="bg-lines" id="bgLines"></div>
+        <div class="bg-blob"  id="bgBlob"></div>
+    </div>
+    <header>
+        <a href="index.html" class="logo">ORITA <span class="logo-highlight">YUKI</span></a>
+        <a href="articles.html" class="header-home-btn">記事一覧に戻る</a>
+    </header>
+    <main>
+        <h1 class="page-title reveal">自分でカスタムしたいから単語アプリを作った</h1>
+        <p class="article-date reveal">2026-06-03</p>
+        <div class="article-body reveal">
+<p>こんにちは、最近記事ばっかり書いている折田です。今回はTangoproのMacOS版のリリースと合わせてそれまでの経緯とか、そもそもTango proってなんなのかについて綴ろうと思います。<br />
+そもそもですが、私は今高校生で英単語を勉強中です。<br />
+そしていつも、手軽にできるスマホアプリで英単語を学んでます。Mikanだったり英語漬けですね。単語をある程度やったら問題演習に進みます。<br />
+その時、単語がわからずに問題が解けないということがしばしばあります。<br />
+このわからない単語を問題演習終わった後に復讐したいのですが、スマホでやりたい！<br />
+ということで、じゃあ作ろうということで作りました。</p>
+<p>このTangoproは自分が使うために作ってるものなので、こちらも超ユーザーフレンドリーを目指して開発しています。ぜひ、一度Downloadしてみてください(Android,Macに対応)</p>
+<p>簡単におすすめの使い方を説明します。アプリをインストールすると標準でCSVが入っています。<br />
+大学受験用が2級対応です。(3級・準2級の単語ができてる前提なんで今後中学英語も入れます)難関大学受験用が準1級に対応してます。<br />
+そして自分でwebに転がっている単語リストをAIにCSVにしてもらって読み込みするのもおすすめです。<br />
+たくさん使い倒して単語力向上に役立ててくださいね。</p>
+<p><a href="https://github.com/oriyu90/Tango-pro/releases/tag/v1.0.1">配布リンク</a></p>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
