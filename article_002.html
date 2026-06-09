@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>テキストエディットが使いにくいからMD Viewer Proを作った - 折田悠希 | ORITA YUKI</title>
-    <meta name="description" content="MACのテキストエディットが使いにくいので、AIで作ってみた。">
+    <title>自分でカスタムしたいから単語アプリを作った - 折田悠希 | ORITA YUKI</title>
+    <meta name="description" content="この度はTango proっていうアプリを作りました。そういうことで、経緯とか適当にまとめようとおもます。">
     <meta name="keywords" content="折田悠希, yuki orita, ORITA YUKI, MDViewer Pro, Tango pro">
     <meta name="author" content="折田悠希">
-    <meta property="og:title" content="テキストエディットが使いにくいからMD Viewer Proを作った - 折田悠希">
-    <meta property="og:description" content="MACのテキストエディットが使いにくいので、AIで作ってみた。">
+    <meta property="og:title" content="自分でカスタムしたいから単語アプリを作った - 折田悠希 | ORITA YUKI">
+    <meta property="og:description" content="この度はTango proっていうアプリを作りました。そういうことで、経緯とか適当にまとめようとおもます。">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="ORITA YUKI">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="自分でカスタムしたいから単語アプリを作った - 折田悠希 | ORITA YUKI">
+    <meta name="twitter:description" content="この度はTango proっていうアプリを作りました。そういうことで、経緯とか適当にまとめようとおもます。">
     <link rel="stylesheet" href="style.css">
     <style>
         .article-body {
@@ -42,23 +46,21 @@
         <a href="articles.html" class="header-home-btn">記事一覧に戻る</a>
     </header>
     <main>
-        <h1 class="page-title reveal">テキストエディットが使いにくいからMD Viewer Proを作った</h1>
-        <p class="article-date reveal">2026-06-02</p>
+        <h1 class="page-title reveal">自分でカスタムしたいから単語アプリを作った</h1>
+        <p class="article-date reveal">2026-06-03</p>
         <div class="article-body reveal">
-<p>今回私はMacで使えるエディタアプリをリリースしたんで、それについて書いてみようと思います。</p>
-<p>私は普段Macを使っているので、標準搭載されているテキストエディットを文章の原案だったり、下書きだったりを作るときにちょこちょこ使っています。<br />
-ですが、webサイトからコピーした文章の形式がcmd + vだとそのまま貼り付けられてしまうので、見にくくなったりフォントが変わったりするところに不満が出てきました。（これに関してはプレーンテキストで貼り付けを覚えてないだけでもありますね。）さらに、Windowサイズを覚えてくれないところにも不満です。<br />
-ということで、AIでサクッと代替アプリを作って見ました。それがMDViewer Proです。<br />
-私はtxt自体にこだわりがなく、txtのように扱えるならいいってだけだったので軽量なのに文字の大きさを変えれたり、AIの出力の標準フォーマット的になっている、</p>
-<h3>「MarkDown」</h3>
-<p>を採用しています。<br />
-そしてこのアプリ、私が普段使いする前提なのでとにかくユーザーフレンドリーに作っていってます。不満があれば即AIに修正依頼って感じですね。<br />
-GitHubで公開してるんでぜひ使って見てください。あと、バグとかもっとこうしてほしいを伝えられるDiscordのサーバーも作ったんでLinkdinからどうぞ。<br />
-GITHUBのリンクです。<br />
-<a href="https://github.com/oriyu90/MD-Viewer-Pro/releases">リンク</a></p>
-<p>というか、めっちゃ話逸れるんですけど、今この記事を書いてる横、窓の外で台風が轟音立ててます。風なのにすげえ。というか怖くて手が震えています。<br />
-物が飛んでこないことを祈って、そろそろ寝ようと思います。</p>
-<p>それではまたー。</p>
+<p>こんにちは、最近記事ばっかり書いている折田です。今回はTangoproのMacOS版のリリースと合わせてそれまでの経緯とか、そもそもTango proってなんなのかについて綴ろうと思います。<br />
+そもそもですが、私は今高校生で英単語を勉強中です。<br />
+そしていつも、手軽にできるスマホアプリで英単語を学んでます。Mikanだったり英語漬けですね。単語をある程度やったら問題演習に進みます。<br />
+その時、単語がわからずに問題が解けないということがしばしばあります。<br />
+このわからない単語を問題演習終わった後に復習したいのですが、スマホでやりたい！<br />
+そこで、じゃあ作ろうと思って作りました。</p>
+<p>このTangoproは自分が使うために作ってるものなので、こちらも超ユーザーフレンドリーを目指して開発しています。ぜひ、一度Downloadしてみてください(Android,Macに対応)</p>
+<p>簡単におすすめの使い方を説明します。アプリをインストールすると標準でCSVが入っています。<br />
+大学受験用が2級対応です。(3級・準2級の単語ができてる前提なんで今後中学英語も入れます)難関大学受験用が準1級に対応してます。<br />
+そして自分でwebに転がっている単語リストをAIにCSVにしてもらって読み込みするのもおすすめです。<br />
+たくさん使い倒して単語力向上に役立ててくださいね。</p>
+<p><a href="https://github.com/oriyu90/Tango-pro/releases/tag/v1.0.1">配布リンク</a></p>
         </div>
     </main>
     <script src="main.js"></script>
