@@ -1,158 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>折田悠希のサイト | ORITA YUKI</title>
-    <meta name="description" content="折田悠希（yuki orita / ORITA YUKI）の個人サイト。MDViewer ProやTango proなどのMacアプリを開発・公開しています。">
-    <meta name="keywords" content="折田悠希, yuki orita, ORITA YUKI, MDViewer Pro, Tango pro, MDViewerPro, TangoPro, oriyu90">
-    <meta name="author" content="折田悠希">
-    <meta property="og:title" content="折田悠希のサイト | ORITA YUKI">
-    <meta property="og:description" content="折田悠希（yuki orita）の個人サイト。MDViewer ProやTango proなどのMacアプリを開発しています。">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ja_JP">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="折田悠希のサイト | ORITA YUKI">
-    <meta name="twitter:description" content="折田悠希（yuki orita）の個人サイト。MDViewer ProやTango proなどのMacアプリを開発しています。">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* ヒーローセクション固有のスタイル */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            position: relative;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio RIZI has moved</title>
 
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 900;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.2s;
-        }
+  <!-- Google Search treats an instant meta refresh as a permanent redirect. -->
+  <meta http-equiv="refresh" content="0; url=https://studio-rizi.pages.dev/">
 
-        .hero p {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards 0.4s;
-        }
+  <!-- Tell search engines which URL is canonical. -->
+  <link rel="canonical" href="https://studio-rizi.pages.dev/">
+  <meta name="robots" content="index,follow">
 
-        .scroll-hint {
-            position: absolute;
-            bottom: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            letter-spacing: 4px;
-            animation: pulse 2.5s infinite;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .scroll-hint::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--text-muted), transparent);
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 1; transform: translateY(8px); }
-        }
-
-        @media (max-width: 640px) {
-            .hero h1 { font-size: 3rem; }
-            .hero p { font-size: 1.1rem; }
-        }
-    </style>
+  <script>
+    // Fallback for browsers/environments where meta refresh does not fire.
+    window.location.replace("https://studio-rizi.pages.dev/");
+  </script>
 </head>
 <body>
-
-    <div class="animated-bg">
-        <div class="bg-lines" id="bgLines"></div>
-        <div class="bg-blob" id="bgBlob"></div>
-    </div>
-
-    <header>
-        <a href="index.html" class="logo">ORITA <span class="logo-highlight">YUKI</span></a>
-        <a href="index.html" class="header-home-btn">メインページ</a>
-    </header>
-
-    <section class="hero">
-        <h1>こんにちは。</h1>
-        <p>ここは折田悠希のサイトです。</p>
-        <div class="scroll-hint">SCROLL DOWN</div>
-    </section>
-
-    <main>
-        <div class="card-grid">
-            <a href="articles.html" class="glass-card reveal">
-                <div>
-                    <div class="card-title">最新の記事</div>
-                    <div class="card-desc">新しく投稿されたニュースやブログなどの記事ページへ移動します。</div>
-                </div>
-                <div class="card-action">
-                    記事を見る
-                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-            </a>
-
-            <a href="profile.html" class="glass-card reveal">
-                <div>
-                    <div class="card-title">プロフィール</div>
-                    <div class="card-desc">折田悠希の生年月日、好きなもの、連絡先などの自己紹介ページです。</div>
-                </div>
-                <div class="card-action">
-                    詳細を見る
-                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-            </a>
-
-            <a href="https://github.com/oriyu90" target="_blank" rel="noopener noreferrer" class="glass-card reveal">
-                <div>
-                    <div class="card-title">GitHub</div>
-                    <div class="card-desc">ソースコードや開発プロジェクトを公開しているGitHubのアカウントです。</div>
-                </div>
-                <div class="card-action">
-                    外部サイトを開く
-                    <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
-                </div>
-            </a>
-
-            <a href="oshirase.html" class="glass-card accent reveal">
-                <div>
-                    <div class="card-title">お知らせ</div>
-                    <div class="card-desc">今後の予定や重要なアナウンスを掲載するためのお知らせ用ページです。</div>
-                </div>
-                <div class="card-action">
-                    ページを開く
-                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </div>
-            </a>
-        </div>
-    </main>
-
-    <script src="main.js"></script>
+  <main>
+    <h1>Studio RIZI has moved</h1>
+    <p>
+      公式サイトは
+      <a href="https://studio-rizi.pages.dev/">https://studio-rizi.pages.dev/</a>
+      へ移転しました。
+    </p>
+  </main>
 </body>
 </html>
